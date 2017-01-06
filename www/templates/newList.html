@@ -1,18 +1,23 @@
 <ion-view view-title="{{listData.newListTitle.length == 0 ? 'New List' : listData.newListTitle}}">
-    <nav mfb-menu position="br" effect="zoomin" active-icon="ion-plus-round" resting-icon="ion-plus-round" toggling-method="click" main-action="openModal()">
-    </nav>
-    <ion-content>
-
-        <label class="item item-input item-floating-label">
+  <nav mfb-menu position="br" effect="zoomin" active-icon="ion-plus-round" resting-icon="ion-plus-round" toggling-method="click"
+    main-action="openModal()">
+  </nav>
+  <ion-content>
+    <label class="item item-input item-floating-label">
             <span class="input-label">List Title</span>
             <input type="text" ng-model="listData.newListTitle" placeholder="List Title">
         </label>
-        <ion-list>
-            <ion-item type="card" ng-repeat="item in itemsList track by $index">
-                <div class="positive">{{item.name}}</div>
-                <div>{{item.quantity}} {{item.unit}}</div>
-            </ion-item>
-        </ion-list>
-    </ion-content>
-
+    <ion-list>
+      <ion-item type="card" ng-repeat="item in itemsList track by $index">
+        <div class="positive">{{item.name}}</div>
+        <div>{{item.quantity}} {{item.unit}}</div>
+        <ion-option-button class="button-positive" ng-click="deleteItem($index)">
+          Delete
+        </ion-option-button>
+        <ion-option-button class="button-info" ng-click="editItem($index)">
+          Edit
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
 </ion-view>

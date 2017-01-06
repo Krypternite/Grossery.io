@@ -19,23 +19,23 @@
 
                 </label>
                 <div class="list" style="padding:4px 20px; margin-bottom:0px;">
-                    <ion-radio ng-model="newItemData.metric" name="metric" ng-value="'weight'" style="border:0">Weight</ion-radio>
-                    <ion-radio ng-model="newItemData.metric" name="metric" ng-value="'volume'" style="border:0">Volume</ion-radio>
-                    <ion-radio ng-model="newItemData.metric" name="metric" ng-value="'units'" style="border:0">Units</ion-radio>
+                    <ion-radio ng-model="newItemData.metric" name="metric" ng-value="'Weight'" style="border:0">Weight</ion-radio>
+                    <ion-radio ng-model="newItemData.metric" name="metric" ng-value="'Volume'" style="border:0">Volume</ion-radio>
+                    <ion-radio ng-model="newItemData.metric" name="metric" ng-value="'Units'" style="border:0">Units</ion-radio>
                 </div>
                 <div ng-hide="newItemData.metric == 'units'">
                     <label class="item item-divider item-input" style="border:0">
                         <span class="input-label">Unit</span>
                     </label>
 
-                    <div class="list" style="padding:4px 20px; margin-bottom:0px;" ng-show="newItemData.metric == 'weight'">
-                        <ion-radio class="col" ng-model="newItemData.unit" name="unit" ng-value="'kg'" style="border:0">Kilogram (kg) </ion-radio>
-                        <ion-radio class="col" ng-model="newItemData.unit" name="unit" ng-value="'g'" style="border:0">Gram (g)</ion-radio>
+                    <div class="list" style="padding:4px 20px; margin-bottom:0px;" ng-show="newItemData.metric == 'Weight'">
+                        <ion-radio class="col" ng-model="newItemData.unit" name="unit" ng-value="'Kg'" style="border:0">Kilogram (kg) </ion-radio>
+                        <ion-radio class="col" ng-model="newItemData.unit" name="unit" ng-value="'G'" style="border:0">Gram (g)</ion-radio>
                     </div>
 
-                    <div class="list" style="padding: 4px 20px; margin-bottom:0px;" ng-show="newItemData.metric == 'volume'">
-                        <ion-radio class="col" ng-model="newItemData.unit" name="unit" ng-value="'l'" style="border:0">Litre (L) </ion-radio>
-                        <ion-radio class="col" ng-model="newItemData.unit" name="unit" ng-value="'ml'" style="border:0">Millilitre (mL)</ion-radio>
+                    <div class="list" style="padding: 4px 20px; margin-bottom:0px;" ng-show="newItemData.metric == 'Volume'">
+                        <ion-radio class="col" ng-model="newItemData.unit" name="unit" ng-value="'L'" style="border:0">Litre (L) </ion-radio>
+                        <ion-radio class="col" ng-model="newItemData.unit" name="unit" ng-value="'Ml'" style="border:0">Millilitre (mL)</ion-radio>
                     </div>
                 </div>
 
