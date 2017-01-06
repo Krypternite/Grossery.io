@@ -1,7 +1,11 @@
 angular.module('grossery.controllers')
   .controller('NewListController', function ($scope, $state, $stateParams, $ionicModal, $ionicPopup) {
+    var id = 0;
+    $scope.editMode = {
+      state: false,
+      index: -1
+    };
 
-    $scope.editMode = false;
     $scope.listData = {
       newListTitle: "",
 
@@ -12,11 +16,13 @@ angular.module('grossery.controllers')
     }
 
     $scope.itemsList = [{
+      id:123,
       name: 'Atta',
       quantity: '10',
       metric: 'Weight',
       unit: 'Kg'
     }, {
+      id:321,
       name: 'Salt',
       quantity: '10',
       metric: 'Weight',
@@ -25,13 +31,15 @@ angular.module('grossery.controllers')
 
 
     $scope.createItemClick = function () {
-        if(!$scope.editMode)
-      $scope.itemsList.push($scope.newItemData);
-      else
-      $scope.itemsList
+      if (!$scope.editMode) {
+        $scope.newItemData.id = id;
+        id = id + 1;
+        $scope.itemsList.push($scope.newItemData)
+      } else {
+        $scope.itemsList[$scope.editMode.index] = angular.copy($scope.newItemData);
+      }
+
     }
-
-
     $ionicModal.fromTemplateUrl('templates/newItemModal.html', {
       scope: $scope,
       animation: 'slide-in-up'
@@ -45,7 +53,8 @@ angular.module('grossery.controllers')
       $scope.newItemModal.hide();
     };
     $scope.editItem = function (index) {
-      $scope.editMode = true;
+      $scope.editMode.state = true;
+      $scope.editMode.index =index;
       console.log($scope.itemsList[index]);
       $scope.newItemData = angular.copy($scope.itemsList[index]);
       /*  $scope.newItemData.name = $scope.itemsList[index].name;
