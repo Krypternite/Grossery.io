@@ -1,7 +1,21 @@
-<ion-view view-title="{{listData.newListTitle.length == 0 ? 'New List' : listData.newListTitle}}">
-  <nav mfb-menu position="br" effect="zoomin" active-icon="ion-plus-round" resting-icon="ion-plus-round" toggling-method="click"
+<ion-view>
+  <!--<nav mfb-menu position="tr" effect="zoomin" active-icon="ion-plus-round" resting-icon="ion-plus-round" toggling-method="click"
+    main-action="openModal()">
+  </nav>-->
+   <ion-nav-bar align-title="left" class="bar bar-stable">
+    <ion-nav-title class="x">
+     {{listData.newListTitle.length == 0 ? 'New List' : listData.newListTitle}}
+    </ion-nav-title>
+    <ion-nav-back-button>
+    </ion-nav-back-button>
+    <ion-nav-buttons side="left">
+      <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+			</button>
+    </ion-nav-buttons>
+     <nav mfb-menu position="tr" effect="zoomin" active-icon="ion-plus-round" resting-icon="ion-plus-round" toggling-method="click"
     main-action="openModal()">
   </nav>
+   </ion-nav-bar>
   <ion-content>
     <label class="item item-input item-floating-label">
             <span class="input-label">List Title</span>
@@ -21,8 +35,10 @@
     </ion-list>
   </ion-content>
   <ion-footer-bar class="bar bar-balanced">
+    <button class="button button-positive">Save</button>
     <div class="title">
       <div style="float:left">Total : {{itemsList.length}}</div>
     </div>
+    <button class="button button-assertive ">Cancel</button>
   </ion-footer-bar>
 </ion-view>

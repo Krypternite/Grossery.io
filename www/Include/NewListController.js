@@ -16,13 +16,13 @@ angular.module('grossery.controllers')
     }
 
     $scope.itemsList = [{
-      id:123,
+      id: 123,
       name: 'Atta',
       quantity: '10',
       metric: 'Weight',
       unit: 'Kg'
     }, {
-      id:321,
+      id: 321,
       name: 'Salt',
       quantity: '10',
       metric: 'Weight',
@@ -31,12 +31,17 @@ angular.module('grossery.controllers')
 
 
     $scope.createItemClick = function () {
-      if (!$scope.editMode) {
+      if (!$scope.editMode.state) {
         $scope.newItemData.id = id;
         id = id + 1;
         $scope.itemsList.push($scope.newItemData)
       } else {
         $scope.itemsList[$scope.editMode.index] = angular.copy($scope.newItemData);
+        $scope.editMode = {
+          state: false,
+          index: -1
+        };
+
       }
 
     }
@@ -54,7 +59,7 @@ angular.module('grossery.controllers')
     };
     $scope.editItem = function (index) {
       $scope.editMode.state = true;
-      $scope.editMode.index =index;
+      $scope.editMode.index = index;
       console.log($scope.itemsList[index]);
       $scope.newItemData = angular.copy($scope.itemsList[index]);
       /*  $scope.newItemData.name = $scope.itemsList[index].name;
