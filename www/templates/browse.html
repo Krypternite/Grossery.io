@@ -1,5 +1,28 @@
-<ion-view view-title="Browse">
+<ion-view view-title="Browse Lists" align-title="left">
   <ion-content>
-    <h1>Browse</h1>
+    <div ng-if="listDetails.length === 0" class="row row-center">
+      <div class="list card" style="width:100%">
+        <div class="item item-divider center-text assertive">
+          Oops!!
+        </div>
+        <div class="item item-text-wrap" style="text-align:center">
+          <p>Seems like you don't have any saved lists</p>
+        </div>
+      </div>
+    </div>
+    <ion-list>
+      <div class="card" ng-repeat="list in listDetails" ui-sref="app.browseChild({listId:list.id})">
+        <div class="item item-divider item-positive item-icon-right browse-title">
+          {{list.title}}
+          <i class="icon ion-ios-arrow-right"></i>
+        </div>
+        <div class="item item-text-wrap item-button-right browse-list-details">
+          Created On : {{list.date | date :'MMM dd, yyyy'}}
+          <button ng-click="$event.stopPropagation();delete({{list.id}})" class="button button-clear button-assertive"><i class="icon ion-ios-minus-outline"></i></button>
+        </div>
+      </div>
+
+    </ion-list>
   </ion-content>
+
 </ion-view>

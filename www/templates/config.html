@@ -1,5 +1,26 @@
 <ion-view view-title="Configuration">
+  <nav mfb-menu position="br" effect="zoomin" active-icon="ion-plus-round" resting-icon="ion-plus-round" toggling-method="click"
+    main-action="openModal()">
+  </nav>
   <ion-content>
     <div class="card">
-  </ion-content>
+      <div class="item item-divider item-balanced item-icon-right browse-title">
+        Manage Defaults
+        <i class="icon ion-ios-arrow-right"></i>
+      </div>
+      <div class="item item-text-wrap browse-list-details">
+        67 items
+      </div>
+    </div>
+    <ion-list>
+      <div class="item item-divider">Rates</div>
+      <ion-item ng-repeat="item in rateList">
+        <div class="row">
+          <div class="col col-center">{{item.name}}</div>
+          <div class="col col-center"> &#8377 {{item.amount}} per {{item.quantity}} {{item.unit}}</div>
+          <a ng-click="$event.stopPropagation();delete({{list.id}})" style="padding:0" class="col button button-clear button-assertive"><i class="icon ion-ios-minus-outline"></i></a>
+
+</ion-item>
+</ion-list>
+</ion-content>
 </ion-view>

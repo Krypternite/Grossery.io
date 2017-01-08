@@ -1,5 +1,5 @@
 angular.module('grossery.controllers')
-  .controller('NewListController', function ($scope, $state, $stateParams, $ionicModal, $ionicPopup) {
+  .controller('NewListController', function ($scope, $state, $stateParams, $ionicHistory, $ionicModal, $ionicPopup, newListService) {
     var id = 0;
     $scope.editMode = {
       state: false,
@@ -8,8 +8,6 @@ angular.module('grossery.controllers')
 
     $scope.listData = {
       newListTitle: "",
-
-
     };
     $scope.newItemData = {
       metric: "weight"
@@ -18,6 +16,7 @@ angular.module('grossery.controllers')
     $scope.itemsList = [{
       id: 123,
       name: 'Atta',
+      amount: '200',
       quantity: '10',
       metric: 'Weight',
       unit: 'Kg'
@@ -25,6 +24,7 @@ angular.module('grossery.controllers')
       id: 321,
       name: 'Salt',
       quantity: '10',
+      amount: '350',
       metric: 'Weight',
       unit: 'Kg'
     }];
@@ -52,9 +52,12 @@ angular.module('grossery.controllers')
       $scope.newItemModal = modal;
     });
     $scope.openModal = function () {
+      if (!$scope.editMode.state)
+        $scope.newItemData = {};
       $scope.newItemModal.show();
     };
     $scope.closeModal = function () {
+      $scope.editMode.state = false;
       $scope.newItemModal.hide();
     };
     $scope.editItem = function (index) {
@@ -74,4 +77,35 @@ angular.module('grossery.controllers')
       }
     }
 
+    $scope.saveList = function () {
+      $scope.listData["items"] = angular.copy($scope.itemsList);
+      newListService.insertNewList(db, $scope.listData).then(function (x) {
+        console.log(x); window.plugins.toast.showShortBottom('List Saved Successfully',
+          function (a) { $state.go('app.home'); },
+          function (b) {
+            console.log(b);
+          });
+        $state.go('app.home');
+
+      }, function (err) {
+        console.log(err);
+      });
+      try {
+        window.plugins.toast.showShortBottom('List Saved Successfully',
+          function (a) { $state.go('app.home'); },
+          function (b) {
+            console.log(b);
+          });
+      } catch (err) { }
+       $ionicHistory.nextViewOptions({
+        disableBack: true
+      });
+      $state.go('app.home');
+    }
+    $scope.cancelList = function () {
+      $ionicHistory.nextViewOptions({
+        disableBack: true
+      });
+      $state.go('app.home');
+    }
   })

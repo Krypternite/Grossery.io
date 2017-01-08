@@ -1,1 +1,14 @@
 /* Empty. Add your own CSS if you like */
+.browse-title{
+    font-size:15px;
+}
+.browse-list-details{
+font-size:12px;
+}
+.newList-modal-text{
+    font-size: 10px;
+}
+.newListModal .item-radio input:checked + .radio-content .radio-icon{
+    line-height: 10px;
+    font-size: 18px;
+}

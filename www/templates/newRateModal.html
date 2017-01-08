@@ -1,0 +1,58 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-dark">
+        <h1 class="title" ng-if="editMode.state === false">New Item</h1>
+        <h1 class="title" ng-if="editMode.state === true">Edit Item</h1>
+        <button class="button  button-secondary" ng-click="closeModal()">Cancel</button>
+    </ion-header-bar>
+    <ion-content>
+        <div class="list">
+            <form name="newItemForm">
+                <label class="item item-input ">
+                    <span class="input-label">Name</span>
+                    <input name="itemName" type="text" ng-model="newRateData.name" placeholder="Name" required>
+                </label>
+                <label class="item item-input ">
+                    <span class="input-label">Amount</span>
+                    <input type="text" ng-model="newRateData.amount" placeholder="Amount">
+                </label>
+                <label class="item item-input ">
+                    <span class="input-label">Per</span>
+                    <input type="text" ng-model="newRateData.quantity" placeholder="Per">
+                </label>
+                <label class="item item-divider item-input" style="border:0">
+<span class="input-label">Metric</span>
+
+</label>
+<div class="list  newList-modal-text newListModal" style="padding:4px 20px; margin-bottom:0px;display: -webkit-inline-box">
+<ion-radio ng-model="newRateData.metric" name="metric" ng-value="'Weight'" style="border:0;font-size: 12px">Weight</ion-radio>
+<ion-radio ng-model="newRateData.metric" name="metric" ng-value="'Volume'" style="border:0; font-size: 10px">Volume</ion-radio>
+<ion-radio ng-model="newRateData.metric" name="metric" ng-value="'Units'" style="border:0; font-size: 10px">Units</ion-radio>
+</div>
+<div ng-hide="newRateData.metric == 'units'">
+    <label class="item item-divider item-input" style="border:0">
+<span class="input-label">Unit</span>
+</label>
+
+<div class="list  newList-modal-text newListModal" style="padding:4px 20px; margin-bottom:0px;display: -webkit-inline-box" ng-show="newRateData.metric == 'Weight'">
+<ion-radio ng-model="newRateData.unit" name="unit" ng-value="'Kg'" style="border:0 ; font-size: 12px">Kilogram (kg) </ion-radio>
+<ion-radio ng-model="newRateData.unit" name="unit" ng-value="'G'" style="border:0;font-size: 12px">Gram (g)</ion-radio>
+</div>
+
+<div class="list  newList-modal-text newListModal" style="padding: 4px 20px; margin-bottom:0px;
+                    display: -webkit-inline-box" ng-show="newRateData.metric == 'Volume'">
+<ion-radio ng-model="newRateData.unit" name="unit" ng-value="'L'" style="border:0; font-size: 12px">Litre (L) </ion-radio>
+<ion-radio ng-model="newRateData.unit" name="unit" ng-value="'Ml'" style="border:0;font-size: 12px">Millilitre (mL)</ion-radio>
+</div>
+</div>
+
+</form>
+
+</div>
+
+
+</ion-content>
+<ion-footer-bar>
+    <button class="button block button-positive" ng-disabled="!newRateData.name.length   > 0" ng-click="createItemClick();newRateModal.hide()"
+        style="width:100%">Create</button>
+</ion-footer-bar>
+</ion-modal-view>

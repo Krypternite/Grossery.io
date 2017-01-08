@@ -2,9 +2,9 @@
   <!--<nav mfb-menu position="tr" effect="zoomin" active-icon="ion-plus-round" resting-icon="ion-plus-round" toggling-method="click"
     main-action="openModal()">
   </nav>-->
-   <ion-nav-bar align-title="left" class="bar bar-stable">
+  <ion-nav-bar align-title="left" class="bar bar-stable">
     <ion-nav-title class="x">
-     {{listData.newListTitle.length == 0 ? 'New List' : listData.newListTitle}}
+      {{listData.newListTitle.length == 0 ? 'New List' : listData.newListTitle}}
     </ion-nav-title>
     <ion-nav-back-button>
     </ion-nav-back-button>
@@ -12,33 +12,42 @@
       <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
 			</button>
     </ion-nav-buttons>
-     <nav mfb-menu position="tr" effect="zoomin" active-icon="ion-plus-round" resting-icon="ion-plus-round" toggling-method="click"
-    main-action="openModal()">
-  </nav>
-   </ion-nav-bar>
+    <nav mfb-menu position="tr" effect="zoomin" active-icon="ion-plus-round" resting-icon="ion-plus-round" toggling-method="click"
+      main-action="openModal()">
+    </nav>
+  </ion-nav-bar>
   <ion-content>
     <label class="item item-input item-floating-label">
             <span class="input-label">List Title</span>
             <input type="text" ng-model="listData.newListTitle" placeholder="List Title">
         </label>
     <ion-list>
-      <ion-item type="card" ng-repeat="item in itemsList track by $index">
-        <div class="positive">{{item.name}}</div>
-        <div>{{item.quantity}} {{item.unit}}</div>
-        <ion-option-button class="button-positive" ng-click="deleteItem($index)">
-          Delete
-        </ion-option-button>
-        <ion-option-button class="button-info" ng-click="editItem($index)">
-          Edit
-        </ion-option-button>
-      </ion-item>
-    </ion-list>
-  </ion-content>
-  <ion-footer-bar class="bar bar-balanced">
-    <button class="button button-positive">Save</button>
-    <div class="title">
-      <div style="float:left">Total : {{itemsList.length}}</div>
-    </div>
-    <button class="button button-assertive ">Cancel</button>
-  </ion-footer-bar>
+      <ion-item ng-repeat="item in itemsList track by $index">
+
+        <div class="positive item-button-right" style="font-size:20px"> {{item.name}}<button ng-click="$event.stopPropagation();deleteItem($index)" class="button button-large button-clear button-assertive">
+          <i class="icon ion-ios-minus-outline"></i>
+          </button>
+</div>
+
+<div class="row">
+  <div class="col">{{item.quantity}} {{item.unit}}</div>
+  <div class="col"> &#8377 {{item.amount}} /-</div>
+</div>
+<!--<ion-option-button class="button-positive" ng-click="deleteItem($index)">
+              Delete
+            </ion-option-button>-->
+<ion-option-button class="button-info" ng-click="editItem($index)">
+  Edit
+</ion-option-button>
+
+</ion-item>
+</ion-list>
+</ion-content>
+<ion-footer-bar class="bar bar-balanced">
+  <button class="button button-assertive " ng-click="cancelList()">Cancel</button>
+  <div class="title">
+    <div style="float:left">Total : {{itemsList.length}}</div>
+</div>
+<button ng-disabled="itemsList.length === 0 || listData.newListTitle.length === 0" class="button button-positive" ng-click="saveList()">Save</button>
+</ion-footer-bar>
 </ion-view>
